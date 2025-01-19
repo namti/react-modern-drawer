@@ -102,7 +102,6 @@ const EZDrawer: React.FC<Props> = (props) => {
 
     const overlayStyles: CSSProperties = {
         backgroundColor: overlayColor.toString(),
-        opacity: overlayOpacity,
         zIndex: zIndex,
     }
 
@@ -132,10 +131,14 @@ const EZDrawer: React.FC<Props> = (props) => {
             </nav>
             {enableOverlay && (
                 <label
-                    htmlFor={'EZDrawer__checkbox' + idSuffix}
-                    id={'EZDrawer__overlay' + idSuffix}
-                    className={'EZDrawer__overlay ' + overlayClassName}
-                    style={overlayStyles}
+                htmlFor={'EZDrawer__checkbox' + idSuffix}
+                id={'EZDrawer__overlay' + idSuffix}
+                className={`EZDrawer__overlay ${overlayClassName}${open && ' open'}`}
+                style={{
+                    ...overlayStyles,
+                    '--duration': `${duration}ms`,
+                    '--opacity': overlayOpacity,
+                } as CSSProperties}
                 />
             )}
         </div>
